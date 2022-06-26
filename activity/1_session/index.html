@@ -8,6 +8,9 @@
     <title>Actividad Sesión 1</title>
     <link rel="stylesheet" href="../../styles.css">
     <link rel="stylesheet" href="../../prism.css">
+    <script type="module" src="aboutme.js" >
+        console.log(situacionActual)
+    </script>
 </head>
 
 <body>
@@ -46,12 +49,21 @@
                         <li>Añade un breakpoint más en <code>console.log(“Ej 1”)</code>.</li>
                         <li>¿Qué se ejecuta antes, la llamada a <code>console.log()</code> o el contenido del fichero
                             <code>aboutme.js</code>?</li>
+                        <b style="color:Red">Respuesta</b>
+                        <p style="color:Red">Se ejecuta primero el fichero aboutme.js</p>
                     </ul>
                     <h2 id="ejercicio-3">Ejercicio 3</h2>
                     <ul>
                         <li>Enumera 3 herramientas útiles dentro de las herramientas de desarrollo de <strong>Google
                                 Chrome</strong> o <strong>Mozila Firefox</strong> (inspector, consola, networking…) y
                             explica su funcionamiento.</li>
+                        <b style="color:Red">Respuesta</b>
+                        <br>
+                        <b style="color:Red"> <ul>
+                            <li> 1 - consola :  su objetivo es mostrar mensajes de tipo informativo , logs y errores del codigo ejecutado del lado del navegador. su utilidad radica en la trazabilidad que brinda , ademas de permitir ejecutar codigo javascript</li>
+                            <li> 2 - networking o redes: su objetivo es visualizar las peticiones de red generadas por el navegador , su utilidad esta en poder ver en detalle los llamados a recursos externos permitiendo ademas de obtener peticiones y respuestas, realizar replicas de peticion , copiar peticiones en diferentes formatos(curl por ejemplo) lo cual ayuda mucho al momento de querer replicar llamados o verificarlos</li>
+                            <li> 3 - source o fuentes: su objetivo es visualizar el contenido statico disponible , su utilidad esta en poder realizar depuracion en caliente siempre que el codigo no este ofuscado</li>
+                        </ul></b>
                     </ul>
                     <h2 id="ejercicio-4">Ejercicio 4</h2>
                     <ul>
@@ -63,6 +75,13 @@
                         <li>¿Cuál es la diferencia entre ejecutar un fichero JavaScript en un navegador web en formato
                             <code>&lt;script&gt;</code> y en formato <code>&lt;script type=”module”&gt;</code>?.</li>
                     </ul>
+                   <b style="color:Red">Respuesta</b>
+            <br>
+            <br>
+                   <b style="color:Red">
+                  la diferencia radica en que en caso de usar "script" sin el type "module" , no podria importar modulos , pero si con el type "module" podria importar modulos.
+                     existen otras diferencias tales como el scope en caso del "script" sin type el scope es global , pero con el type "module" el scope es local.
+                               </b>
                     <h2 id="ejercicio-6">Ejercicio 6</h2>
                     <ul>
                         <li>Crea un objeto llamado <strong>formatter</strong> con un atributo, que llamaremos
@@ -85,18 +104,51 @@
                     <p class="folder">/activity/1_session/index.js</p>
                     <pre>
 <code class="language-javascript">// Ejercicio 1
-
+debugger
+import {situacionActual} from './aboutme.js';
+debugger
+console.log(situacionActual);
+debugger
 console.log("Ejercicio 1");
 
 // Ejercicio 2
-
+console.log("Se ejecuta primero el fichero aboutme.js")
+console.log("Ejercicio 2");
 // Ejercicio 3
-
+console.log("1 - consola : su objetivo es mostrar mensajes de tipo informativo , logs y errores del codigo ejecutado del lado del navegador. su utilidad radica en la trazabilidad que brinda , ademas de permitir ejecutar codigo javascript\n" +
+    "2 - networking o redes: su objetivo es visualizar las peticiones de red generadas por el navegador , su utilidad esta en poder ver en detalle los llamados a recursos externos permitiendo ademas de obtener peticiones y respuestas, realizar replicas de peticion , copiar peticiones en diferentes formatos(curl por ejemplo) lo cual ayuda mucho al momento de querer replicar llamados o verificarlos\n" +
+    "3 - source o fuentes: su objetivo es visualizar el contenido statico disponible , su utilidad esta en poder realizar depuracion en caliente siempre que el codigo no este ofuscado")
+console.log("Ejercicio 3");
 // Ejercicio 4
-
+import {isDivisible} from './mathematics.js';
+for (let i=1; i<=100; i++) {
+  if (isDivisible({num1: i, num2: 7})) {
+    console.log(i);
+  }
+}
+console.log("Ejercicio 4");
 // Ejercicio 5
+console.log('la diferencia radica en que en caso de usar "script" sin el type "module" , no podria importar modulos , pero si con el type "module" podria importar modulos.\n' +
+    '                     existen otras diferencias tales como el scope en caso del "script" sin type el scope es global , pero con el type "module" el scope es local.\n' +
+    '              ' )
+console.log("Ejercicio 5");
 
-// Ejercicio 6</code></pre>
+// Ejercicio 6
+
+import {Formatter} from "./utils.js";
+
+var formatter = new Formatter();
+
+console.log(formatter.append("World"));
+
+Formatter.prototype.toLowerString = function(text) {
+  return text.toLowerCase();
+};
+
+console.log(formatter.toLowerString("I’m Lucas"));
+console.log("Ejercicio 6");
+</code>
+                    </pre>
 
         </div>
     </div>
