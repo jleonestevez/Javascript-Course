@@ -24,8 +24,8 @@ console.log("Ejercicio 3");
 // Ejercicio 4
 import {Autenticacion} from './autenticacion.js';
 const autenticacion = new Autenticacion();
-//autenticacion.login("admin", "passwd");
-//autenticacion.login("pepe", "bad");
+autenticacion.login("admin", "passwd");
+autenticacion.login("pepe", "bad");
 console.log("Ejercicio 4");
 // Ejercicio 5
 const buttonLoginSuccess = document.getElementById("loginSuccess");
@@ -36,6 +36,7 @@ const buttonLoginFailure = document.getElementById("loginFailure");
 buttonLoginFailure.addEventListener('click', event => {
     autenticacion.login("pepe", "bad");
 });
+console.log("Ejercicio 5");
 // Ejercicio 6
 const buttonLoginAsyncSuccess = document.getElementById("loginSuccessAsync");
 buttonLoginAsyncSuccess.addEventListener('click', async event => {
@@ -66,3 +67,4 @@ let loginWitUsername = (username, password) => {
       }, 200);
     });
 };
+console.log("Ejercicio 6");
