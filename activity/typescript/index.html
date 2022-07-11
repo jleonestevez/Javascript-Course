@@ -11,59 +11,377 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="section">
-            <a class="back-button" href="/activity/activity.html">
-                < Back</a> <h1>Actividad Sesión 3</h1>
-                    <p class="caption">Actividades para TypeScript</p>
-                    <hr class="separator">
-                    <p>Puedes realizar los ejercicios creando un nuevo proyecto que compile TypeScript o puedes utilizar <a href="https://www.typescriptlang.org/play">el playground de TypeScript</a>.</p>
-                    <h2 id="ejercicio-1">Ejercicio 1</h2>
-                    <ul>
-                    <li><p>Crea una interfaz &#39;Person&#39; que tenga como atributos &#39;name&#39;, &#39;age&#39; y &#39;profession&#39;. Ahora define una arrow function que tenga como parámetro esta interfaz y que devuelva un array con <strong>el valor de sus propiedades</strong>, esta función tiene que tener <strong>tipado el parámetro de entrada y el return</strong>.</p>
-                    </li>
-                    <li><p>Ayuda -&gt; El array probablemente necesite <a href="https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#union-types">union type</a> *</p>
-                    </li>
-                    </ul>
-<pre><code class="lang-javascript">// input name -&gt; Lucas / age -&gt; <span class="hljs-number">28</span> / profession -&gt; Full Stack
-// <span class="hljs-keyword">return</span> -&gt; [<span class="hljs-string">"Lucas"</span>, <span class="hljs-number">28</span>, <span class="hljs-string">"profession"</span>]
+<div class="container">
+    <div class="section">
+        <a class="back-button" href="/activity/activity.html">
+            < Back</a>
+        <h1>Actividad Sesión 3</h1>
+        <p class="caption">Actividades para TypeScript</p>
+        <hr class="separator">
+        <p>Puedes realizar los ejercicios creando un nuevo proyecto que compile TypeScript o puedes utilizar <a
+                href="https://www.typescriptlang.org/play">el playground de TypeScript</a>.</p>
+        <h2 id="ejercicio-1">Ejercicio 1</h2>
+        <ul>
+            <li><p>Crea una interfaz &#39;Person&#39; que tenga como atributos &#39;name&#39;, &#39;age&#39; y &#39;profession&#39;.
+                Ahora define una arrow function que tenga como parámetro esta interfaz y que devuelva un array con
+                <strong>el valor de sus propiedades</strong>, esta función tiene que tener <strong>tipado el parámetro
+                    de entrada y el return</strong>.</p>
+            </li>
+            <li><p>Ayuda -&gt; El array probablemente necesite <a
+                    href="https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#union-types">union type</a>
+                *</p>
+            </li>
+        </ul>
+        <pre><code class="lang-javascript">// input name -&gt; Lucas / age -&gt; <span class="hljs-number">28</span> / profession -&gt; Full Stack
+// <span class="hljs-keyword">return</span> -&gt; [<span class="hljs-string">"Lucas"</span>, <span class="hljs-number">28</span>, <span
+                    class="hljs-string">"profession"</span>]
 </code></pre>
-                    <h2 id="ejercicio-2">Ejercicio 2</h2>
-                    <p>Escribe una función llamada <code>sumOrConcatenate</code> que acepte dos parámetros. Cada uno de estos parámetros podrá ser de tipo <code>number</code> o <code>string</code>. La función devolverá una suma si los dos parámetros son números, una concatenación con el símbolo <code>-</code> si son los dos <code>strings</code> o una cadena concatenadad con <code>:</code> si uno es un <code>number</code> y el otro <code>string</code>.</p>
-<pre><code class="lang-javascript">console.<span class="hljs-built_in">log</span>(sumOrConcatenate(<span class="hljs-number">4</span>, <span class="hljs-number">3</span>)); <span class="hljs-comment">// 7</span>
-console.<span class="hljs-built_in">log</span>(sumOrConcatenate(<span class="hljs-number">4</span>, <span class="hljs-string">"hello"</span>)); <span class="hljs-comment">// 4:hello </span>
-console.<span class="hljs-built_in">log</span>(sumOrConcatenate(<span class="hljs-string">"hello"</span>, <span class="hljs-string">"world"</span>)); <span class="hljs-comment">//hello-world</span>
+        <b style="color:Red">Respuesta</b>
+        <br>
+        <br>
+        <b style="color:Red">
+            <ul>
+                <li>Se creo la interfaz IPerson</li>
+                <pre>
+                <code class="language-javascript">
+export interface Iperson {
+    name: string;
+    age: number;
+    profession: string;
+}
+                </code>
+                    </pre>
+                <li>Se agrega llamado a index.ts</li>
+                <pre>
+                <code class="language-javascript">// Ejercicio 1
+import {Iperson} from "./iPerson";
+
+let arrowFunc = (x: Iperson ): Array< string | number> => {
+    return  Object.keys(x).map( (key : string ) => x[key as keyof Iperson]);
+}
+
+const person: Iperson = {
+    name: "Juan",
+    age: 30,
+    profession: "Developer"
+}
+console.log(arrowFunc(person));
+console.log("Ejercicio 1")
+
+                </code>
+                    </pre>
+            </ul>
+        </b>
+        <h2 id="ejercicio-2">Ejercicio 2</h2>
+        <p>Escribe una función llamada <code>sumOrConcatenate</code> que acepte dos parámetros. Cada uno de estos
+            parámetros podrá ser de tipo <code>number</code> o <code>string</code>. La función devolverá una suma si los
+            dos parámetros son números, una concatenación con el símbolo <code>-</code> si son los dos
+            <code>strings</code> o una cadena concatenadad con <code>:</code> si uno es un <code>number</code> y el otro
+            <code>string</code>.</p>
+        <pre><code class="lang-javascript">console.<span class="hljs-built_in">log</span>(sumOrConcatenate(<span
+                class="hljs-number">4</span>, <span class="hljs-number">3</span>)); <span
+                class="hljs-comment">// 7</span>
+console.<span class="hljs-built_in">log</span>(sumOrConcatenate(<span class="hljs-number">4</span>, <span
+                    class="hljs-string">"hello"</span>)); <span class="hljs-comment">// 4:hello </span>
+console.<span class="hljs-built_in">log</span>(sumOrConcatenate(<span class="hljs-string">"hello"</span>, <span
+                    class="hljs-string">"world"</span>)); <span class="hljs-comment">//hello-world</span>
 </code></pre>
-                    <h2 id="ejercicio-3">Ejercicio 3</h2>
-                    <p>Crea dos interfaces, una llamada <code>Car</code> y otra <code>Motorcycle</code>. La primera tendrá las propiedades <code>tires</code> (number), <code>turnOnEngine()</code> (función que devuelve void) y <code>pressPedal()</code> (función que devuelve void).
-                    La segunda tendrá las propiedades <code>tires</code> (number), <code>turnOnEngine()</code> (función que devuelve void) y <code>openThrottle()</code> (función que devuelve void).
-                    Escribe una función que acepte un parámetro que pueda ser <code>Car</code> o <code>Motorcycle</code> que, primero llame a turnOnEngine, y luego si es Car llame a pressPedal pero si es Motorcycle llame a openThrottle().
-                    Para la comprobación no valdrá <code>typeof</code>, necesitaremos hacer uso de <a href="https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates">type predicates</a>.</p>
-                    
-                    <h2 id="ejercicio-4">Ejercicio 4</h2>
-                    <p>Crea una <code>función genérica</code>, que acepte un array que pueda contener <code>strings</code> y <code>numbers</code> y devuelva el <strong>mismo array sin el primer elemento</strong>.</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> strArray: string[] = [<span class="hljs-string">'Hello'</span>, <span class="hljs-string">'World'</span>, <span class="hljs-string">'Im'</span>, <span class="hljs-string">'a'</span>, <span class="hljs-string">'Full'</span>, <span class="hljs-string">'Stack'</span>, <span class="hljs-string">'Developer'</span>];
-<span class="hljs-keyword">const</span> numArray: number[] = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>];
-<span class="hljs-keyword">const</span> mixedArray: Array&lt;number|string&gt; = [<span class="hljs-string">'Hello'</span>, <span class="hljs-string">'I'</span>, <span class="hljs-string">'have'</span>, <span class="hljs-number">3</span>, <span class="hljs-string">'tasks'</span>];
-<span class="hljs-keyword">const</span> unsupportedArray = [{name: <span class="hljs-string">'Lucas'</span>, surname: <span class="hljs-string">'Fernandez'</span>}, <span class="hljs-string">'Hello'</span>, <span class="hljs-number">22</span>];
+        <b style="color:Red">Respuesta</b>
+        <br>
+        <br>
+        <b style="color:Red">
+            <ul>
+                <li>Se creo la clase Exercise02</li>
+                <pre>
+                <code class="language-javascript">
+/**
+*  Clase con funciones del ejercicio 2
+*/
+class Exercise02 {
+
+   constructor() {
+       console.log("Eejercicio 2")
+   }
+
+   /**
+    * Funcion encargada de sumar o concatenar dos valores.
+    * @param x valor 1.
+    * @param y valor 2.
+    */
+   sumOrConcatenate(x: string | number , y : string | number): string | number | undefined {
+        try {
+            // Caso 1 - La función devolverá una suma si los dos parámetros son números
+            // Caso 2 - Una concatenación con el símbolo - si son los dos strings
+            // Caso 3 - Una cadena concatenadad con : si uno es un number y el otro string
+
+            if ( typeof x === 'number' && typeof y === 'number') {
+                return x + y;
+            }
+            else if ( typeof x === 'string' && typeof y === 'string') {
+                return x + '-' + y;
+            }
+            else if ( typeof x === 'number' && typeof y === 'string') {
+                return x + ':' + y;
+            }
+
+            return undefined
+
+        } catch (e) {
+            console.error(e);
+            return undefined
+        }
+   }
+}
+
+export { Exercise02 };
+                </code>
+                    </pre>
+                <li>Se agrega llamado a index.ts</li>
+                <pre>
+                <code class="language-javascript">// Ejercicio 2
+import {Exercise02} from "./exercise02.js";
+const exercise02 = new Exercise02();
+console.log(exercise02.sumOrConcatenate(4, 3)); // 7
+console.log(exercise02.sumOrConcatenate(4, "hello")); // 4:hello
+console.log(exercise02.sumOrConcatenate("hello", "world")); //hello-world
+console.log("Ejercicio 2")
+
+                </code>
+                    </pre>
+            </ul>
+        </b>
+        <h2 id="ejercicio-3">Ejercicio 3</h2>
+        <p>Crea dos interfaces, una llamada <code>Car</code> y otra <code>Motorcycle</code>. La primera tendrá las
+            propiedades <code>tires</code> (number), <code>turnOnEngine()</code> (función que devuelve void) y <code>pressPedal()</code>
+            (función que devuelve void).
+            La segunda tendrá las propiedades <code>tires</code> (number), <code>turnOnEngine()</code> (función que
+            devuelve void) y <code>openThrottle()</code> (función que devuelve void).
+            Escribe una función que acepte un parámetro que pueda ser <code>Car</code> o <code>Motorcycle</code> que,
+            primero llame a turnOnEngine, y luego si es Car llame a pressPedal pero si es Motorcycle llame a
+            openThrottle().
+            Para la comprobación no valdrá <code>typeof</code>, necesitaremos hacer uso de <a
+                    href="https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates">type
+                predicates</a>.</p>
+        <b style="color:Red">Respuesta</b>
+        <br>
+        <br>
+        <b style="color:Red">
+            <ul>
+                <li>Se creo la clase Exercise03</li>
+                <pre>
+                <code class="language-javascript">
+/**
+*  Clase con funciones del ejercicio 3
+*/
+import {Icar} from "./iCar";
+import {Imotorcycle} from "./Imotorcycle";
+
+class Exercise03 {
+
+   constructor() {
+       console.log("Ejercicio 3")
+   }
+
+   /**
+    * Funcion encargada de validar si el vehiculo es un carro.
+    * @param vehiculo
+    */
+   isCar(vehiculo: Icar | Imotorcycle): vehiculo is Icar {
+       const vehiculoInterno = (vehiculo as Icar);
+       return vehiculoInterno.pressPedal !== undefined;
+   }
+
+   /**
+    * Funcion encargada de validar si el vehiculo es una moto.
+    * @param vehiculo
+    */
+   isMotorcycle(vehiculo: Icar | Imotorcycle): vehiculo is Imotorcycle {
+       const vehiculoInterno = (vehiculo as Imotorcycle);
+       return vehiculoInterno.openThrottle !== undefined;
+   }
+
+   /**
+    * Funcion encargada de sumar o concatenar dos valores.
+    * @param vehiculo
+    */
+   startMartch(vehiculo: Icar | Imotorcycle): void {
+       try {
+           // 1 - Llamar a turnOnEngine()
+              vehiculo.turnOnEngine();
+           if (this.isCar(vehiculo)) {
+               console.log("is a car");
+               // 2 - si es Car llame a pressPedal()
+               vehiculo.pressPedal();
+           } else
+               if(this.isMotorcycle(vehiculo))  {
+               console.log("is a motorcycle");
+               // 3 - o si es Motorcycle llame a openThrottle().
+               vehiculo.openThrottle();
+           }
+
+       } catch (e) {
+           console.error(e);
+       }
+   }
+}
+
+export {Exercise03};
+                </code>
+                    </pre>
+                <li>Se agrega llamado a index.ts</li>
+                <pre>
+                <code class="language-javascript">// Ejercicio 3
+import {Exercise03} from "./exercise03.js";
+import {Icar} from "./iCar";
+import {Imotorcycle} from "./Imotorcycle";
+const exercise03 = new Exercise03();
+
+const car: Icar = {
+   tires: 4,
+   turnOnEngine: () => {
+       console.log("Turning on  car engine");
+       return "Turning on  car engine";
+   },
+   pressPedal: () => {
+       console.log("Pressing car pedal");
+       return "Pressing car pedal";
+   }
+}
+const motorcycle: Imotorcycle = {
+   tires: 2,
+   turnOnEngine: () => {
+       console.log("Turning on motorcycle engine");
+       return "Turning on motorcycle engine";
+   },
+   openThrottle() {
+       console.log("Opening motorcycle throttle");
+       return "Opening motorcycle throttle";
+   }
+}
+exercise03.startMartch(car);
+exercise03.startMartch(motorcycle);
+console.log("Ejercicio 3")
+                </code>
+                    </pre>
+            </ul>
+        </b>
+        <h2 id="ejercicio-4">Ejercicio 4</h2>
+        <p>Crea una <code>función genérica</code>, que acepte un array que pueda contener <code>strings</code> y <code>numbers</code>
+            y devuelva el <strong>mismo array sin el primer elemento</strong>.</p>
+        <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> strArray: string[] = [<span
+                class="hljs-string">'Hello'</span>, <span class="hljs-string">'World'</span>, <span class="hljs-string">'Im'</span>, <span
+                class="hljs-string">'a'</span>, <span class="hljs-string">'Full'</span>, <span class="hljs-string">'Stack'</span>, <span
+                class="hljs-string">'Developer'</span>];
+<span class="hljs-keyword">const</span> numArray: number[] = [<span class="hljs-number">1</span>, <span
+                    class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span
+                    class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>];
+<span class="hljs-keyword">const</span> mixedArray: Array&lt;number|string&gt; = [<span
+                    class="hljs-string">'Hello'</span>, <span class="hljs-string">'I'</span>, <span class="hljs-string">'have'</span>, <span
+                    class="hljs-number">3</span>, <span class="hljs-string">'tasks'</span>];
+<span class="hljs-keyword">const</span> unsupportedArray = [{name: <span
+                    class="hljs-string">'Lucas'</span>, surname: <span class="hljs-string">'Fernandez'</span>}, <span
+                    class="hljs-string">'Hello'</span>, <span class="hljs-number">22</span>];
 
 <span class="hljs-keyword">const</span> newStrArray = removeFirstEntry(strArray);
 <span class="hljs-keyword">const</span> newNumArray = removeFirstEntry(numArray);
 <span class="hljs-keyword">const</span> newMixedArray = removeFirstEntry(mixedArray);
 <span class="hljs-regexp">// const newUnsupportedArray = removeFirstEntry(unsupportedArray); --&gt; will fail
 
-console.log(newStrArray); //</span><span class="hljs-function"> --&gt;</span> [<span class="hljs-string">'World'</span>, <span class="hljs-string">'Im'</span>, <span class="hljs-string">'a'</span>, <span class="hljs-string">'Full'</span>, <span class="hljs-string">'Stack'</span>, <span class="hljs-string">'Developer'</span>];
+console.log(newStrArray); //</span><span class="hljs-function"> --&gt;</span> [<span class="hljs-string">'World'</span>, <span
+                    class="hljs-string">'Im'</span>, <span class="hljs-string">'a'</span>, <span class="hljs-string">'Full'</span>, <span
+                    class="hljs-string">'Stack'</span>, <span class="hljs-string">'Developer'</span>];
 <span class="hljs-built_in">console</span>.log(newNumArray); <span class="hljs-regexp">// --&gt; [2, 3, 4, 5, 6, 7];
-console.log(newMixedArray); //</span><span class="hljs-function"> --&gt;</span> [<span class="hljs-string">'I'</span>, <span class="hljs-string">'have'</span>, <span class="hljs-number">3</span>, <span class="hljs-string">'tasks'</span>];
+console.log(newMixedArray); //</span><span class="hljs-function"> --&gt;</span> [<span
+                    class="hljs-string">'I'</span>, <span class="hljs-string">'have'</span>, <span
+                    class="hljs-number">3</span>, <span class="hljs-string">'tasks'</span>];
 </code></pre>
+        <b style="color:Red">Respuesta</b>
+        <br>
+        <br>
+        <b style="color:Red">
+            <ul>
+                <li>Se creo la clase Exercise04</li>
+                <pre>
+                <code class="language-javascript">
+/**
+*  Clase con funciones del ejercicio 4
+*/
+import {Icar} from "./iCar";
+import {Imotorcycle} from "./Imotorcycle";
 
-        </div>
+/**
+* Clase con funciones para el ejercicio 4
+*/
+class Exercise04 {
+
+   constructor() {
+       console.log("Ejercicio 4")
+   }
+
+   /**
+    * Funcion encargada de quitar el primer elemento de un arreglo de tipo generico
+    * @param array arreglo que acepta enteros o numeros)
+    */
+   removeFirstEntryGenericType < T >(array: T[]): T[]{
+       try {
+           return array.shift()!== undefined ? array : [] ;
+       } catch (e) {
+           console.error("Se genero un error", e);
+           return [];
+       }
+   }
+   /**
+    * Funcion encargada de quitar el primer elemento de un arreglo de tipo generico
+    * @param array arreglo que acepta enteros o numeros)
+    */
+   removeFirstEntry (array:  Array< string | number>):  Array< string | number>{
+       try {
+           return array.shift()!== undefined ? array : [] ;
+       } catch (e) {
+           console.error("Se genero un error", e);
+           return [];
+       }
+   }
+}
+
+export {Exercise04};
+
+
+
+
+                </code>
+                    </pre>
+                <li>Se agrega llamado a index.ts</li>
+                <pre>
+                <code class="language-javascript">// Ejercicio 4
+
+import {Exercise04} from "./exercise04.js";
+const exercise04 = new Exercise04();
+const strArray: string[] = ['Hello', 'World', 'Im', 'a', 'Full', 'Stack', 'Developer'];
+const numArray: number[] = [1, 2, 3, 4, 5, 6, 7];
+const mixedArray: Array< number|string> = ['Hello', 'I', 'have', 3, 'tasks'];
+const unsupportedArray = [{name: 'Lucas', surname: 'Fernandez'}, 'Hello', 22];
+
+const newStrArray = exercise04.removeFirstEntry(strArray);
+const newNumArray = exercise04.removeFirstEntry(numArray);
+const newMixedArray = exercise04.removeFirstEntry(mixedArray);
+
+//const newUnsupportedArray = exercise04.removeFirstEntry(unsupportedArray); //--> will fail
+
+console.log(newStrArray); // --> ['World', 'Im', 'a', 'Full', 'Stack', 'Developer'];
+console.log(newNumArray); // --> [2, 3, 4, 5, 6, 7];
+console.log(newMixedArray); // --> ['I', 'have', 3, 'tasks'];
+console.log("Ejercicio 4")
+                </code>
+                    </pre>
+            </ul>
+        </b>
     </div>
-    <script src="../../prism.js"></script>
+</div>
+<script src="../../prism.js"></script>
 
-    <script type="module" src="index.js">
-    </script>
-
+<script type="module" src="index.js">
+</script>
 
 
 </body>
